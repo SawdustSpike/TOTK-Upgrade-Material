@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.XPath;
 using TOTK.Models;
 
 namespace TOTK.Controllers
@@ -12,11 +13,28 @@ namespace TOTK.Controllers
         {
             this.repo = repo;
         }
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";            
+            ViewBag.AmountNeededSortParm = sortOrder == "Amount" ? "Amount_Desc" : "Amount"; 
+
             var material = repo.GetAllMaterials();
-            var sorted = material.OrderBy(x => x.Name);
-            return View(sorted);
+            switch (sortOrder)
+            {                    
+                case "Name_Desc":
+                    material = material.OrderByDescending(x => x.Name);
+                    break;
+                case "Amount":
+                    material = material.OrderBy(x => x.AmountNeeded);
+                    break;
+                case "Amount_Desc":
+                    material = material.OrderByDescending(x => x.AmountNeeded);
+                    break;
+                default:
+                    material = material.OrderBy(x => x.Name);
+                    break;
+            }            
+            return View(material.ToList());
         }
         public IActionResult ViewMaterial(int id)
         {

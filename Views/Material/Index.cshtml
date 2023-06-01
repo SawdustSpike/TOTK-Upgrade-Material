@@ -5,23 +5,22 @@
     <a href="/Material/InsertMaterial/">Create a New Material</a>
 </div>
 <table class="table">
-    <tr>       
-        <th>Name</th>
-        <th>Amount Needed</th>   
+    <tr>
+        <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
+        <th>@Html.ActionLink("Amount Needed", "Index", new { sortOrder = ViewBag.AmountNeededSortParm })</th>
         <th>Delete This Item</th>
     </tr>
 
     @foreach (var Material in @Model)
     {
-        <tr>            
+        <tr>
             <td><a href=/Material/UpdateMaterial/@Material.MaterialID>@Material.Name</a></td>
             <td>@Material.AmountNeeded</td>
-            <td>
-                @using (Html.BeginForm("DeleteMaterial", "Material", "Post"))
-                {
-                    <input type="hidden" asp-for="@Material.MaterialID" value="@Material.MaterialID" />
-                    <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this Material" />
-                }
+           <td> @using (Html.BeginForm("DeleteMaterial", "Material", "Post"))
+            {
+                <input type="hidden" asp-for="@Material.MaterialID" value="@Material.MaterialID" />
+                <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this product" />
+            }
             </td>
         </tr>
     }
