@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Material>
+
+<h2>Materials</h2>
+<div style="display: block">
+    <a href="/Material/InsertMaterial/">Create a New Material</a>
+</div>
+<table class="table">
+    <tr>       
+        <th>Name</th>
+        <th>Amount Needed</th>   
+        <th>Delete This Item</th>
+    </tr>
+
+    @foreach (var Material in @Model)
+    {
+        <tr>            
+            <td><a href=/Material/UpdateMaterial/@Material.MaterialID>@Material.Name</a></td>
+            <td>@Material.AmountNeeded</td>
+            <td>
+                @using (Html.BeginForm("DeleteMaterial", "Material", "Post"))
+                {
+                    <input type="hidden" asp-for="@Material.MaterialID" value="@Material.MaterialID" />
+                    <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this Material" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>
