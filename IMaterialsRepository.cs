@@ -9,5 +9,7 @@ namespace TOTK
         public void UpdateMaterial(Material material);
         public void InsertMaterial(Material material);
         public IEnumerable<Material> GetAllMaterials();
+        public List<char> Letters(IEnumerable<Material> material);
+        public IEnumerable<Material> GetAllMaterialsByFirstLetter(char id);
     }
 }

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Material>
+
+<h2>Materials that begin with @ViewBag.Letter</h2>
+@*<div style="display: block">
+    <a href="/Material/InsertMaterial/">Create a New Material</a>
+</div>*@
+<a href="@Url.Action("Index", "Material" )">All</a>
+@foreach (var letter in ViewBag.Letters)
+{
+    <a href="@Url.Action("ViewByFirstLetter", "Material", new { firstLetter = @letter })">@letter</a>
+}
+<table class="table">
+    <tr>
+        <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
+        <th>@Html.ActionLink("Amount Needed", "Index", new { sortOrder = ViewBag.AmountNeededSortParm })</th>
+        @*<th>Delete This Item</th>*@
+    </tr>
+
+    @foreach (var Material in @Model)
+    {
+        <tr>
+            <td><a href=/Material/UpdateMaterial/@Material.MaterialID>@Material.Name</a></td>
+            <td>@Material.AmountNeeded</td>
+           @* <td>
+                @using (Html.BeginForm("DeleteMaterial", "Material", "Post"))
+                {
+                    <input type="hidden" asp-for="@Material.MaterialID" value="@Material.MaterialID" />
+                    <input type="submit" onclick="return confirm('Are you sure?')" value="Remove Material From List" />
+                }
+            </td>*@
+        </tr>
+    }
+
+</table>

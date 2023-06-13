@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\TOTK.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\spike\\source\\repos new\\TOTK\\wwwroot\\TOTK.png",
+      "PackagePath": "staticwebassets\\TOTK.png"
+    },
+    {
       "Id": "C:\\Users\\spike\\source\\repos new\\TOTK\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fyYFc5ufP2+HJ8JKGJz9yttqKzUEz9pS/cHAU8PqnNA=",
+  "Hash": "GdSts4dXDJ7F1MwgEEWrtlKpYSpyiOgM4p6I059fa20=",
   "Source": "TOTK",
   "BasePath": "_content/TOTK",
   "Mode": "Default",
@@ -1069,6 +1069,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\spike\\source\\repos new\\TOTK\\wwwroot\\TOTK.png",
+      "SourceId": "TOTK",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\spike\\source\\repos new\\TOTK\\wwwroot\\",
+      "BasePath": "_content/TOTK",
+      "RelativePath": "TOTK.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\TOTK.png"
     }
   ]
 }

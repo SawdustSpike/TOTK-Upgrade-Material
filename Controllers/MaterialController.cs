@@ -18,7 +18,9 @@ namespace TOTK.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";            
             ViewBag.AmountNeededSortParm = sortOrder == "Amount" ? "Amount_Desc" : "Amount"; 
 
-            var material = repo.GetAllMaterials();
+            var material = repo.GetAllMaterials().Where(x=> x.AmountNeeded>0);
+           
+            ViewBag.Letters = repo.Letters(material);
             switch (sortOrder)
             {                    
                 case "Name_Desc":
@@ -34,7 +36,7 @@ namespace TOTK.Controllers
                     material = material.OrderBy(x => x.Name);
                     break;
             }            
-            return View(material.ToList());
+            return View(material);
         }
         public IActionResult ViewMaterial(int id)
         {
@@ -55,7 +57,7 @@ namespace TOTK.Controllers
         {
             var check = repo.GetAllMaterials().ToList();
             var matches = check.Where(p => p.Name == material.Name).ToList();
-            material.AmountNeeded += matches[0].AmountNeeded;
+            material.AmountNeeded = matches[0].AmountNeeded - material.AmountNeeded;
             repo.UpdateMaterial(material);
 
             return RedirectToAction("Index");
@@ -85,6 +87,15 @@ namespace TOTK.Controllers
         {
             repo.DeleteMaterial(material);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ViewByFirstLetter(char firstLetter)
+        {
+            ViewBag.Letter = firstLetter;
+            var materials = repo.GetAllMaterialsByFirstLetter(firstLetter).Where(x => x.AmountNeeded>0);
+            ViewBag.Letters = repo.Letters(repo.GetAllMaterials());
+            //var materials = repo.GetAllMaterials().Where(x => x.Name[0] == firstLetter && x.AmountNeeded>0);
+            return View(materials);
         }
     }
 }
