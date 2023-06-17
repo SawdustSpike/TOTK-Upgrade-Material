@@ -92,7 +92,7 @@ namespace TOTK.Controllers
         public ActionResult ViewByFirstLetter(char firstLetter)
         {
             ViewBag.Letter = firstLetter;
-            var materials = repo.GetAllMaterialsByFirstLetter(firstLetter).Where(x => x.AmountNeeded>0);
+            var materials = repo.GetAllMaterialsByFirstLetter(firstLetter).Where(x => x.AmountNeeded>0).OrderBy(x => x.Name);
             ViewBag.Letters = repo.Letters(repo.GetAllMaterials());
             //var materials = repo.GetAllMaterials().Where(x => x.Name[0] == firstLetter && x.AmountNeeded>0);
             return View(materials);
